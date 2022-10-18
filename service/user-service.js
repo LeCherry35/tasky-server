@@ -31,7 +31,6 @@ class UserService {
             throw ApiError.BadRequest('Wrong activation link')
         }
         user.isActivated = true
-        console.log(user);
         await user.save()
     }
     async login(email, password) {
@@ -63,6 +62,8 @@ class UserService {
         const userData = tokenService.validateRefreshToken(refreshToken)
         const tokenFromDb = await tokenService.findToken(refreshToken)
         if (!userData || !tokenFromDb) {
+            console.log('uD',userData);
+            console.log('tDb',tokenFromDb);
             throw ApiError.UnauthorizedError()
         }
         const user = await UserModel.findById(userData.id)
@@ -75,10 +76,10 @@ class UserService {
             user: userDto
         }
     }
-    async getAllUsers() {
-        const users = await UserModel.find()
-        return users
-    }
+    // async getAllUsers() {
+    //     const users = await UserModel.find()
+    //     return users
+    // }
 }
 
 module.exports = new UserService()

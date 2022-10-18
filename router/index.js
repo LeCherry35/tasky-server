@@ -18,5 +18,7 @@ router.get('/users', authMiddleware, userController.getUsers)
 
 router.post('/addTodo', todoController.addTodo)
 router.get('/getTodos', todoController.getTodos)
+router.delete('/deleteTodo', todoController.deleteTodo)
+router.put('/editTodo/', todoController.editTodo)
 
 module.exports = router
