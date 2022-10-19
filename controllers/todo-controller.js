@@ -3,8 +3,8 @@ const todoService = require("../service/todo-service")
 class TodoController {
     async addTodo(req, res, next) {
         try {
-            const {todo, userId} = req.body
-            const todoData = await todoService.addTodo(todo, userId)
+            const {todo, userId, id} = req.body
+            const todoData = await todoService.addTodo(todo, userId, id)
             return res.json(todoData)
         } catch (e) {
             next(e)
@@ -39,6 +39,24 @@ class TodoController {
             next(e)
         }
         
+    }
+    async setDone(req, res, next) {
+        try {
+            const { id } = req.query
+            const todo = await todoService.setDone(id)
+            return res.json(todo)
+        } catch (e) {
+            next(e)
+        }
+    }
+    async setUndone(req, res, next) {
+        try {
+            const { id } = req.query
+            const todo = await todoService.setUndone(id)
+            return res.json(todo)
+        } catch (e) {
+            next(e)
+        }
     }
 }
 

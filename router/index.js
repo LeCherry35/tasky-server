@@ -20,5 +20,7 @@ router.post('/addTodo', todoController.addTodo)
 router.get('/getTodos', todoController.getTodos)
 router.delete('/deleteTodo', todoController.deleteTodo)
 router.put('/editTodo/', todoController.editTodo)
+router.put('/setDone', todoController.setDone)
+router.put('/setUndone', todoController.setUndone)
 
 module.exports = router
