@@ -4,7 +4,7 @@ const TodoSchema = new Schema({
     id:{type: String, required: true},
     todo: {type: String, required: true},
     isDone: {type: Boolean, required: true},
-    user: {type: Schema.Types.ObjectId, ref: 'User'}
+    user: {type: Schema.Types.ObjectId, ref: 'User', required: true}
 })
 
 module.exports = model('Todo', TodoSchema)

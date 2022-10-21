@@ -3,7 +3,8 @@ const todoService = require("../service/todo-service")
 class TodoController {
     async addTodo(req, res, next) {
         try {
-            const {todo, userId, id} = req.body
+            const {todo, id} = req.body
+            const userId = req.user.id
             const todoData = await todoService.addTodo(todo, userId, id)
             return res.json(todoData)
         } catch (e) {
@@ -12,7 +13,7 @@ class TodoController {
     }
     async getTodos(req, res, next) {
         try {
-            const {userId} = req.query
+            const userId = req.user.id
             const todos =  await todoService.getTodos(userId)
             return res.json(todos)
         } catch (e) {
@@ -54,6 +55,15 @@ class TodoController {
             const { id } = req.query
             const todo = await todoService.setUndone(id)
             return res.json(todo)
+        } catch (e) {
+            next(e)
+        }
+    }
+    async deleteAll(req, res, next) {
+        try {
+            const userId = req.user.id
+            const todos =  await todoService.deleteAll(userId)
+            return res.json(todos)
         } catch (e) {
             next(e)
         }

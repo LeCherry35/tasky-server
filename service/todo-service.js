@@ -15,6 +15,7 @@ class TodoService {
     }
     async getTodos (userId) {
         const todos = await TodoModel.find({user: userId})
+        console.log(userId);
         return todos
     }
     async setDone (id) {
@@ -24,6 +25,10 @@ class TodoService {
     async setUndone (id) {
         const todo = await TodoModel.findOneAndUpdate({id: id}, {$set:{isDone: false}})
         return todo
+    }
+    async deleteAll (userId) {
+        const todos = await TodoModel.deleteMany({user: userId})
+        return todos
     }
 }
 
