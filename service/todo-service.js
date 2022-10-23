@@ -15,7 +15,6 @@ class TodoService {
     }
     async getTodos (userId) {
         const todos = await TodoModel.find({user: userId})
-        console.log(userId);
         return todos
     }
     async setDone (id) {
