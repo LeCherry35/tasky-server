@@ -4,7 +4,7 @@ class TodoController {
     async addTodo(req, res, next) {
         try {
             const {todo, createdAt, deadline} = req.body
-            const userId = req.user.createdAt
+            const userId = req.user.id
             const todoData = await todoService.addTodo(todo, userId, createdAt, deadline)
             return res.json(todoData)
         } catch (e) {
@@ -13,7 +13,7 @@ class TodoController {
     }
     async getTodos(req, res, next) {
         try {
-            const userId = req.user.createdAt
+            const userId = req.user.id
             const todos =  await todoService.getTodos(userId)
             return res.json(todos)
         } catch (e) {
