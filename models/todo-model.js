@@ -1,7 +1,8 @@
 const {Schema, model} = require('mongoose')
 
 const TodoSchema = new Schema({
-    id:{type: String, required: true},
+    createdAt:{type: String, required: true},
+    deadline: {type: String, required: false},
     todo: {type: String, required: true},
     isDone: {type: Boolean, required: true},
     user: {type: Schema.Types.ObjectId, ref: 'User', required: true}

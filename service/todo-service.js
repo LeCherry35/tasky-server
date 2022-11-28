@@ -1,28 +1,28 @@
 const TodoModel = require("../models/todo-model");
 
 class TodoService {
-    async addTodo (todoText, userId, id) {
-        const todo = await TodoModel.create({id: id, todo: todoText, isDone: false, user: userId})
+    async addTodo (todoText, userId, createdAt, deadline) {
+        const todo = await TodoModel.create({createdAt: createdAt, todo: todoText, isDone: false, user: userId, deadline})
         return todo
     }
-    async editTodo (id, editedTodo) {
-        const todo = await TodoModel.findOneAndUpdate({id: id}, {$set:{todo: editedTodo}})
+    async editTodo (createdAt, editedTodo) {
+        const todo = await TodoModel.findOneAndUpdate({createdAt: createdAt}, {$set:{todo: editedTodo}})
         return todo
     }
-    async deleteTodo (id) {
-        const todo = await TodoModel.findOneAndRemove({id: id})
+    async deleteTodo (createdAt) {
+        const todo = await TodoModel.findOneAndRemove({createdAt: createdAt})
         return todo
     }
     async getTodos (userId) {
         const todos = await TodoModel.find({user: userId})
         return todos
     }
-    async setDone (id) {
-        const todo = await TodoModel.findOneAndUpdate({id: id}, {$set:{isDone: true}})
+    async setDone (createdAt) {
+        const todo = await TodoModel.findOneAndUpdate({createdAt: createdAt}, {$set:{isDone: true}})
         return todo
     }
-    async setUndone (id) {
-        const todo = await TodoModel.findOneAndUpdate({id: id}, {$set:{isDone: false}})
+    async setUndone (createdAt) {
+        const todo = await TodoModel.findOneAndUpdate({createdAt: createdAt}, {$set:{isDone: false}})
         return todo
     }
     async deleteAll (userId) {
