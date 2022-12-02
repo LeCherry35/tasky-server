@@ -61,7 +61,7 @@ class TodoController {
     }
     async deleteAll(req, res, next) {
         try {
-            const userId = req.user.createdAt
+            const userId = req.user.id
             const todos =  await todoService.deleteAll(userId)
             return res.json(todos)
         } catch (e) {

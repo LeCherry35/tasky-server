@@ -18,7 +18,7 @@ class TodoService {
         return todos
     }
     async setDone (createdAt) {
-        const todo = await TodoModel.findOneAndUpdate({createdAt: createdAt}, {$set:{isDone: true}})
+        const todo = await TodoModel.findOneAndUpdate({createdAt: createdAt}, {$set:{isDone: true, completedAt: Date.now()}})
         return todo
     }
     async setUndone (createdAt) {
