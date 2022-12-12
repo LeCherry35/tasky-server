@@ -5,6 +5,7 @@ const router = new Router()
 const {body} = require('express-validator')
 const authMiddleware = require('../middlewares/auth-middleware')
 const todoController = require('../controllers/todo-controller')
+const eventController = require('../controllers/event-controller')
 
 router.post('/registration', 
     body('email').isEmail(),
@@ -22,5 +23,8 @@ router.put('/editTodo/', authMiddleware,todoController.editTodo)
 router.put('/setDone', authMiddleware,todoController.setDone)
 router.put('/setUndone', authMiddleware,todoController.setUndone)
 router.delete('/deleteAll', authMiddleware,todoController.deleteAll)
+
+router.post('/addEvent', authMiddleware, eventController.addEvent)
+router.get('/getEvents', authMiddleware, eventController.getEvents)
 
 module.exports = router
