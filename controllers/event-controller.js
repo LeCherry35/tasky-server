@@ -21,7 +21,16 @@ class EventController {
             next(e)
         }
     }
-
+    async deleteEvent(req, res, next) {
+        try {
+            const { _id } = req.query
+            const event = await eventService.deleteEvent(_id)
+            console.log('##', event);
+            return res.json(event)
+        } catch (e) {
+            next(e)
+        }
+    }
 }
 
 module.exports = new EventController

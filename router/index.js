@@ -26,5 +26,6 @@ router.delete('/deleteAll', authMiddleware,todoController.deleteAll)
 
 router.post('/addEvent', authMiddleware, eventController.addEvent)
 router.get('/getEvents', authMiddleware, eventController.getEvents)
+router.delete('/deleteEvent',authMiddleware, eventController.deleteEvent)
 
 module.exports = router
