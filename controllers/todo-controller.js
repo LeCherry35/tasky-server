@@ -33,8 +33,8 @@ class TodoController {
     async editTodo(req, res, next) {
         try{
             const { createdAt } = req.query
-            const { editedTodo } = req.body
-            const todo = await todoService.editTodo(createdAt, editedTodo)
+            const { editedTodo, deadline = null } = req.body
+            const todo = await todoService.editTodo(createdAt, editedTodo, deadline)
             return res.json(todo)
         } catch (e) {
             next(e)

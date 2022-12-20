@@ -5,8 +5,8 @@ class TodoService {
         const todo = await TodoModel.create({createdAt: createdAt, todo: todoText, isDone: false, user: userId, deadline})
         return todo
     }
-    async editTodo (createdAt, editedTodo) {
-        const todo = await TodoModel.findOneAndUpdate({createdAt: createdAt}, {$set:{todo: editedTodo}})
+    async editTodo (createdAt, editedTodo, deadline) {
+        const todo = await TodoModel.findOneAndUpdate({createdAt: createdAt}, {$set:{todo: editedTodo, deadline}})
         return todo
     }
     async deleteTodo (createdAt) {
